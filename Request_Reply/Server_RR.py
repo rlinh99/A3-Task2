@@ -1,25 +1,26 @@
 import zmq
 from datetime import *
 
-# Prepare context and sockets
+# Prepare ZMQ context and sockets
 port = 5556
 
 context = zmq.Context()
-# Create zmq replier
+# create zmq reply socket
 socket = context.socket(zmq.REP)
 
-#bind replier to a port
+# bind replier to a port
 socket.bind("tcp://*:%s" % port)
 print("ZeroMQ Server is up")
 
 while True:
-    # recove request from Client
+    # receive request from Client
     message = socket.recv()
     print("Received request from Client")
 
+    # decode request
     request = message.decode()
     print("Received request: {}".format(request))
 
-    # check request's name.
+    # validate request, end response
     if request == "get_time":
         socket.send(str(datetime.now()).encode())

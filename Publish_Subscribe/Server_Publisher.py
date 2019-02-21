@@ -10,8 +10,9 @@ def main():
     publisher = context.socket(zmq.PUB)
     # bind publisher with address
     publisher.bind("tcp://*:5563")
-
+    print("Publisher is running")
     try:
+        # start publishing message
         while True:
             content = str(datetime.datetime.now()).encode()
             # set the message in the publisher
