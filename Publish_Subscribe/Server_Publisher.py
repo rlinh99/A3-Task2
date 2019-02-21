@@ -4,16 +4,19 @@ import datetime
 
 
 def main():
-    # Prepare our context and publisher
+    # create zmq context and publisher
     context = zmq.Context()
+    # create context as publisher
     publisher = context.socket(zmq.PUB)
+    # bind publisher with address
     publisher.bind("tcp://*:5563")
+
     try:
         while True:
             content = str(datetime.datetime.now()).encode()
-            # Write two messages, each with an envelope and content
+            # set the message in the publisher
             publisher.send_multipart([b"get_time", content])
-            publisher.send_multipart([b"B", b"We would like to see this"])
+
             time.sleep(1)
     finally:
         publisher.close()

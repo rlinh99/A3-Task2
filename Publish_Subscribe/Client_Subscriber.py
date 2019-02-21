@@ -4,7 +4,7 @@ import datetime
 
 
 def main():
-    # Prepare our context and publisher
+    # Prepare context and publisher
     context = zmq.Context()
     subscriber = context.socket(zmq.SUB)
     subscriber.connect("tcp://localhost:5563")
@@ -23,7 +23,7 @@ def main():
         print("Content received at : {0}".format(end_time))
         print("Offset (RTT/2) is {0}".format(offset))
 
-        # subprocess.run(["date", "-s", str(result)])
+        subprocess.run(["date", "-s", str(result)])
         print("Time is set to: {0}".format(str(result)))
 
         # print("[%s] %s" % (address, contents))
