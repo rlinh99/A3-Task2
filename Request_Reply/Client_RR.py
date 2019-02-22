@@ -41,3 +41,4 @@ try:
     print("Time is set to: {0}".format(str(result)))
 finally:
     socket.close()
+    context.term()
