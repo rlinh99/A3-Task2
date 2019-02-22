@@ -40,5 +40,4 @@ try:
     subprocess.run(["date", "-s", str(result)])
     print("Time is set to: {0}".format(str(result)))
 finally:
-    print("An exception has occurred, terminate")
     socket.close()
